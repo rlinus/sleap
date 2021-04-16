@@ -1,9 +1,9 @@
 #Tensorflow v2.3.1 is needed for sleap v1.1.3
-FROM tensorflow/tensorflow:2.2.2-gpu-jupyter
+#FROM tensorflow/tensorflow:2.4.1-gpu-jupyter
+FROM nvcr.io/nvidia/tensorflow:21.03-tf2-py3
 
 # Needed for sleap
 RUN apt-get update && apt-get install -y libgl1
-RUN python3 -m pip install install git+https://github.com/rlinus/sleap.git@develop --no-cache-dir
 
 # Not needed, but can be useful
 RUN apt-get update && apt-get install -y wget tree
@@ -11,6 +11,10 @@ RUN apt-get update && apt-get install -y wget tree
 # download test dataset https://sleap.ai/notebooks/Training_and_inference_on_an_example_dataset.html
 RUN wget -O /root/dataset.zip https://github.com/murthylab/sleap-datasets/releases/download/dm-courtship-v1/drosophila-melanogaster-courtship.zip && mkdir /root/dataset && unzip /root/dataset.zip -d /root/dataset && rm /root/dataset.zip
 
+# get sleap
+COPY . /root/Repos/sleap/
+#RUN pip install -r /root/Repos/sleap/requirements.txt
+RUN python3 -m pip install /root/Repos/sleap/
 
 WORKDIR /root
 

@@ -24,3 +24,4 @@ seaborn
 pykalman==0.9.5
 segmentation-models==1.0.1
 rich==9.10.0
+nbformat>=5.0
