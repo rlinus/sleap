@@ -217,7 +217,7 @@ def make_transition_layers(
     name="transition",
 ) -> List[tf.Tensor]:
 
-    if isinstance(source_outputs, tf.Tensor):
+    if not isinstance(source_outputs, list):
         source_outputs = [source_outputs]
 
     targets_inputs = []

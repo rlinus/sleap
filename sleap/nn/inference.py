@@ -269,6 +269,9 @@ class Predictor(ABC):
             ex.update(preds)
 
             # Convert to numpy arrays if not already.
+            print('linus debug:')
+            print(ex["video_ind"])
+            print(ex["frame_ind"])
             if isinstance(ex["video_ind"], tf.Tensor):
                 ex["video_ind"] = ex["video_ind"].numpy().flatten()
             if isinstance(ex["frame_ind"], tf.Tensor):
@@ -2358,6 +2361,9 @@ class BottomUpInferenceModel(InferenceModel):
             If `BottomUpInferenceModel.bottomup_layer.return_pafs` is `True`, the
             predicted PAFs will be returned in the `"part_affinity_fields"` key.
         """
+        print('linus debug:')
+        print(ex["video_ind"])
+        print(ex["frame_ind"])
         if isinstance(example, tf.Tensor):
             example = dict(image=example)
         return self.bottomup_layer(example)
